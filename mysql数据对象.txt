@@ -1,0 +1,19 @@
+﻿
+
+1.	mysql数据库对象
+	DataBase/Schema  	
+
+	Table  	
+	
+	Index
+
+	View/Trigger/Function/Procedure
+
+
+2.	常用的数据对象
+	
+	索引
+
+	约束
+
+	视图、触发器、函数、存储过程

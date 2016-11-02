@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="./template.js"></script>
+	<style type="text/css">
+		.red{
+			color: red;
+		}
+
+		.contentdiv{
+			overflow: hidden;
+		}
+		.item_demo {
+		    width: 340px;
+		    min-height: 250px;
+		    float: left;
+		    position: relative;
+		    border: 1px solid black;
+		    margin-right: 40px;
+    		margin-top: 30px;
+		}
+
+		.item_title{
+			background-color: rgb(153,204,204);
+		    height: 50px;
+		    width: 100%;
+		}
+		.item_title_left{
+			color: rgb(127,127,127);
+			margin-left: 20px;
+			line-height: 48px; 
+		}
+		.item_class_room{
+			position: absolute;
+		    left: 52%;
+		    transform: translateX(-50%);
+		    top: 14px;
+		    font-size: 19.9px;
+		}
+		.item_demo > div:nth-child(2){
+			color: red;
+		}
+
+		.item_demo > div:nth-child(3){
+			color: blue;
+		}
+
+		.table_head{
+			text-align: center;
+		}
+		.table_head > td{
+			width: 25%;
+			height: 20px;
+		}
+		.item_foot{
+			margin-top: 25px;
+    		margin-left: 17px;
+		}
+
+		table{
+			border-collapse:collapse;
+		}
+
+
+	</style>
+</head>
+<body>
+
+	<script src="http://cdn.bootcss.com/jquery/2.2.1/jquery.js"></script>
+
+    <div id="content"></div>
+	
+	<div class="contentdiv" id="bb_contentdiv"> </div>
+	<!-- 测试云桌面模版引擎 -->
+	<script id="yun_content" type="text/html">
+	{{each list as value i}}
+		<div class="item_demo">
+			<div class="item_title">
+				<span class="item_title_left">教室名</span>
+				<span class="item_class_room">{{value.classRoom}}</span>
+			</div>
+			<div class="item_body">
+				<span class="item_title_left">当前场景</span>
+				{{value.event}}
+			</div>
+			<div class="item_body">
+				<span class="item_title_left">操作系统</span>
+				{{value.os}}
+			</div>
+
+			<table border="1px"  rules="rows">
+				<tr class="table_head">
+					<td>运行中</td>
+					<td>配置中</td>
+					<td>已连接终端</td>
+					<td>配置终端数</td>
+				</tr>
+				<tr style="text-align: center;">
+					<td>{{value.run}}</td>
+					<td>{{value.set}}</td>
+					<td>{{value.connect}}</td>
+					<td>{{value.setnumber}}</td>
+				</tr>
+			</table>
+
+
+			<div class="item_foot">
+				<a href="javascript:;" class="bb_alert">开机</a>
+				<a href="javascript:;">关机</a>
+				<a href="javascript:;">重启</a>
+				<a href="javascript:;">重置</a>
+			</div>
+
+		</div>
+
+
+	{{/each}}
+
+	</script>
+
+
+	
+
+
+	<script type="text/javascript">
+		var data2 = {
+	    list: [{ classRoom:"教学楼A107",
+	    		 event:"英语早读",
+	    		 os:"win7",
+	    		 run:30,
+	    		 set:21,
+	    		 connect:7,
+	    		 setnumber:5,
+	    		 id:100,
+	    		 
+	    		},
+	    		{ 
+	    		 classRoom:"实验楼A106",
+	    		 event:"物理实验",
+	    		 os:"win8",
+	    		 run:20,
+	    		 set:2,
+	    		 connect:5,
+	    		 setnumber:10,
+	    		 id:110,
+
+	    		
+	    		},
+	    		{ 
+	    		 classRoom:"实验楼",
+	    		 event:"英语听力",
+	    		 os:"xp",
+	    		 run:25,
+	    		 set:2,
+	    		 connect:5,
+	    		 setnumber:10,
+	    		 id:120,
+
+	    		 
+	    		}
+	   		  ]
+		};
+
+		var html = template('yun_content', data2);
+
+		document.getElementById('bb_contentdiv').innerHTML = html;
+
+		$(".bb_alert").bind('click',function(){ showvalue($(this))} );
+
+		function showvalue(dom){
+			console.log(dom.text());
+		}
+	</script>
+
+
+</body>
+</html>
